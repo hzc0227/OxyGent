@@ -35,8 +35,6 @@ async def test_execute_code_error():
     _, stop_session = code_interpreter_tools.func_dict["stop_session"]
 
     # No warm-up: validate first-call error behavior without preheating
-    result = await execute_code(
-        session_id=session_id, code="print(undefined_variable)"
-    )
+    result = await execute_code(session_id=session_id, code="print(undefined_variable)")
     assert "NameError" in result
     await stop_session(session_id=session_id)
